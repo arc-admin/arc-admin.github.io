@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<link rel="stylesheet" href="css/flipclock.css">
+		<title>anyRandom.com</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="shortcut icon" href="arc.png">		
+<style>
+.address {color: black; background-color: white; border-radius: 3px; width: 25%; margin-left: auto; margin-right: auto; font-size: 25pt;
+    box-shadow: inset 0 0 8px rgba(0,0,0, 0.75);
+    -moz-box-shadow: inset 0 0 8px rgba(0,0,0, 0.75);
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0, 0.75);
+	}
+#address { cursor: hand }
+
+#stop { display: inline-block; }
+#refresh { display: inline-block; }
+</style>
+<script language="javascript" type="text/javascript">
+</script>
+	</head>
+<body style="background-color: black;">
+<div id="universe" style="margin-left: auto; margin-right: auto; margin-top: 15%; text-align: center;">
+
+		<div class="address" id="redirectInfo" style="font-family: sans-serif; color: #000; position: relative; top: 0px;">anyRandom.com loading in...</div>
+		<div class="clock" style="padding-left: 46%;"></div>
+		<div class="address" id="address" style="font-family: sans-serif; color: #000;" onclick="window.location.href = 'http://' + document.getElementById('address').innerHTML;"></div>
+		<div id="stop"><img id="stopButton" src="stop.png" width="48" height="48" title="Stop" onclick="this.style.display='none';"/></div>
+		<div id="refresh"><img src="refresh.png" width="48" height="48" title="Reload" onclick="location.reload(); this.style.display='none';"/></div>
+		
+		<script src="js/random.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/flipclock.min.js"></script>
+		<script type="text/javascript">
+
+	var clock = $('.clock').FlipClock(05, {
+		clockFace: 'Counter'
+	
+	});
+
+//clock.setTime(00);
+//clock.setCountdown(true);
+
+	var url = randomDotcom();
+	document.getElementById('address').innerHTML = url;
+	document.getElementById('address').href = 'http://' + url;
+	
+	setTimeout(function() {
+		setInterval(function() {
+
+			if(document.getElementById('stopButton').style.display != 'none')
+			{
+				if(clock.getTime() > 0  ) 
+					clock.decrement();
+				else
+					window.location.href = 'http://' + document.getElementById('address').innerHTML;
+			}
+		}, 1000);
+	});
+</script>
+</div>
+	</body>
+</html>
+</body>
+</html>
